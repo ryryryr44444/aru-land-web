@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://SITE-URL/sitemap.xml
+Sitemap: https://aruland.jp/sitemap.xml
