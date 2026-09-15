@@ -33,7 +33,7 @@
 <template id="__bundler_thumbnail">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e6bff"/><stop offset="1" stop-color="#ff5b9e"/></linearGradient></defs><rect width="200" height="200" fill="#14161f"/><text x="100" y="115" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="700" fill="url(#g)" text-anchor="middle">AL</text></svg>
 </template>
-</head>
+
 <body>
 <x-dc>
 <helmet>
@@ -57,6 +57,7 @@
     .aru-reveal-card > div[style*="font-size: 16px"] { font-size: 15px !important; line-height: 1.55 !important; }
     .aru-sec-head { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
     .aru-news-row { flex-direction: column !important; gap: 6px !important; }
+    .aru-pickup-grid { grid-template-columns: minmax(0, 1fr) !important; }
     .aru-news-row > div:first-child { width: auto !important; }
     .aru-about-row { grid-template-columns: 1fr !important; gap: 4px !important; }
     .aru-footer-row { flex-direction: column !important; align-items: flex-start !important; }
@@ -88,6 +89,8 @@
   @keyframes logoBaseFade { 0% { opacity: 1; } 100% { opacity: 0; } }
   @keyframes logoBounce { 0% { transform: translateY(0) scale(1); } 30% { transform: translateY(-14px) scale(1.03); } 55% { transform: translateY(0) scale(0.99); } 75% { transform: translateY(-5px) scale(1.01); } 100% { transform: translateY(0) scale(1); } }
   @keyframes logoAuraBoost { 0%,100% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 40% { opacity: 1.6; transform: translate(-50%,-50%) scale(1.3); } }
+  @keyframes holoShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes holoSweep { 0% { transform: translate(-30%, -30%) rotate(18deg); } 100% { transform: translate(30%, 30%) rotate(18deg); } }
   @keyframes logoGleam { 0%,100% { filter: drop-shadow(0 10px 34px oklch(0.6 0.18 320 / .45)) brightness(1); } 50% { filter: drop-shadow(0 10px 40px oklch(0.7 0.2 320 / .6)) brightness(1.25); } }
   @keyframes introSparkle { 0% { opacity: 0; transform: scale(0); } 30% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0.6) translateY(-14px); } }
   @keyframes logoBurstFall { 0% { opacity: 0; transform: translateY(0) scale(.4); } 15% { opacity: 1; transform: translateY(6px) scale(1); } 80% { opacity: .7; } 100% { opacity: 0; transform: translateY(46px) scale(.5); } }
@@ -138,7 +141,7 @@
 <div id="aru-root" style="font-family: 'Noto Sans JP', 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif; background: oklch(0.985 0.005 260); color: oklch(0.22 0.02 260); width: 100%; max-width: 100%; overflow-x: hidden; box-sizing: border-box; position: relative;">
 
   <div style="position: fixed; inset: 0; z-index: 200; background: oklch(0.12 0.02 260); display: flex; align-items: center; justify-content: center; opacity: {{ introOpacity }}; pointer-events: {{ introPointer }}; visibility: {{ introVisibility }}; transition: opacity 1s ease, visibility 1s;">
-    <div style="position: relative; width: min(620px, 78%); animation: logoRise 1.1s cubic-bezier(.16,1,.3,1) both, logoBounce 1.1s cubic-bezier(.34,1.56,.64,1) 4.5s both;">
+    <div style="position: relative; width: min(620px, 78%); animation: logoRise 0.8s cubic-bezier(.16,1,.3,1) both, logoBounce 0.8s cubic-bezier(.34,1.56,.64,1) 3.3s both;">
       <div style="position: absolute; left: 50%; top: 50%; width: 82%; height: 170%; transform: translate(-50%, -50%); pointer-events: none; background: radial-gradient(ellipse at center, oklch(0.72 0.17 320 / .45), transparent 68%); filter: blur(34px); animation: logoAura 3.2s ease-in-out infinite, logoAuraBoost 1.6s ease-out 4.5s both;"></div>
       <img src="./assets/aruland-logo.png" alt="ARU LAND（アルランド）" width="1280" height="252" decoding="async" style="position: relative; display: block; width: 100%; height: auto; filter: grayscale(1) brightness(2.4) contrast(.55) drop-shadow(0 8px 28px oklch(0.7 0.02 280 / .3)); animation: logoBaseFade 3s ease-out 1.1s forwards;"/>
       <img src="./assets/aruland-logo.png" alt="" aria-hidden="true" width="1280" height="252" decoding="async" style="position: absolute; inset: 0; display: block; width: 100%; height: auto; opacity: 0; filter: grayscale(0) saturate(1) drop-shadow(0 10px 34px oklch(0.6 0.18 320 / .45)) brightness(1); animation: logoColorIn 3s ease-out 1.1s forwards, logoGleam 1.4s ease-in-out 4.6s 2;"/>
@@ -248,6 +251,58 @@
         </div>
       </section>
 
+      <section class="aru-fade" style="position: relative; padding: clamp(48px, 8vw, 88px) clamp(16px, 4vw, 48px); background: linear-gradient(135deg, oklch(0.95 0.03 250), oklch(0.94 0.035 300)); animation-delay: .1s;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+          <div class="aru-sec-head aru-scroll-reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: clamp(24px, 4vw, 36px);">
+            <div>
+              <div style="font-size: 12px; letter-spacing: 3px; font-weight: 700; color: oklch(0.45 0.16 350); margin-bottom: 10px;">PICK UP</div>
+              <h2 style="font-size: clamp(24px, 4.5vw, 36px); font-weight: 800; line-height: 1.2; margin: 0; letter-spacing: -.5px; color: oklch(0.22 0.04 290);">{{ t.pickupSub }}</h2>
+            </div>
+            <button onClick="{{ goMedia }}" style="border: none; border-bottom: 2px solid oklch(0.32 0.06 300); background: none; cursor: pointer; padding: 6px 0; font-size: 13px; font-weight: 700; letter-spacing: 2px; color: oklch(0.28 0.06 300);">JOURNAL ↗</button>
+          </div>
+          <div class="aru-pickup-grid" style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 24px; align-items: stretch;">
+            <div onClick="{{ openArticle1 }}" class="aru-scroll-reveal aru-reveal-card" style="cursor: pointer; display: flex; flex-direction: column; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px oklch(0.4 0.05 290 / .06); transition: transform .25s, box-shadow .25s;" style-hover="transform: translateY(-4px); box-shadow: 0 14px 30px oklch(0.4 0.06 290 / .14);">
+              <div style="background: linear-gradient(135deg, oklch(0.9 0.05 250), oklch(0.93 0.04 320));">
+                <img src="./assets/article1-banner.png" alt="TikTok Shop" width="1680" height="945" decoding="async" style="display: block; width: 100%; height: auto;"/>
+              </div>
+              <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
+                <div style="display: flex; gap: 16px; align-items: baseline; font-size: 12px; letter-spacing: 2px; margin-bottom: 14px;">
+                  <span style="color: oklch(0.45 0.16 350); font-weight: 700;">JOURNAL</span>
+                  <span style="color: oklch(0.55 0.02 260);">2026.09.05</span>
+                </div>
+                <div style="font-size: clamp(20px, 3.4vw, 26px); font-weight: 800; line-height: 1.45; color: oklch(0.2 0.03 290); margin-bottom: 10px; white-space: pre-line;">{{ t.pickupArticleTitle }}</div>
+                <div style="font-size: 14px; color: oklch(0.45 0.02 260); line-height: 1.7; flex: 1;">{{ t.pickupArticleSub }}</div>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid oklch(0.92 0.01 270); font-size: 13px; font-weight: 700; color: oklch(0.32 0.06 300); letter-spacing: .5px;">{{ t.pickupReadMore }}</div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              <div onClick="{{ goPartnership }}" class="aru-scroll-reveal aru-reveal-card" style="cursor: pointer; display: flex; flex-direction: column; flex: 1; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px oklch(0.4 0.05 290 / .06); transition: transform .25s, box-shadow .25s;" style-hover="transform: translateY(-4px); box-shadow: 0 14px 30px oklch(0.4 0.06 290 / .14);">
+                <div style="background: linear-gradient(135deg, oklch(0.93 0.04 320), oklch(0.9 0.05 250));">
+                  <img src="./assets/partnership-lockup.jpg" alt="ARU LAND × DITTO DITTO" width="1600" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto;"/>
+                </div>
+                <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
+                  <div style="display: flex; gap: 16px; align-items: baseline; font-size: 12px; letter-spacing: 2px; margin-bottom: 12px;">
+                    <span style="color: oklch(0.45 0.16 350); font-weight: 700;">PARTNERSHIP</span>
+                    <span style="color: oklch(0.55 0.02 260);">2026.08</span>
+                  </div>
+                  <div style="font-size: clamp(16px, 2.2vw, 19px); font-weight: 800; line-height: 1.5; color: oklch(0.2 0.03 290); text-wrap: pretty; overflow-wrap: anywhere; flex: 1;">{{ t.pickupPartnerTitle }}</div>
+                  <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid oklch(0.92 0.01 270); font-size: 13px; font-weight: 700; color: oklch(0.32 0.06 300); letter-spacing: .5px;">{{ t.pickupSeeMore }}</div>
+                </div>
+              </div>
+              <div onClick="{{ goShopping }}" class="aru-scroll-reveal aru-reveal-card" style="cursor: pointer; display: flex; gap: 20px; align-items: center; padding: 16px 24px 16px 16px; background: white; border-radius: 12px; box-shadow: 0 1px 3px oklch(0.4 0.05 290 / .06); transition: transform .25s, box-shadow .25s;" style-hover="transform: translateY(-4px); box-shadow: 0 14px 30px oklch(0.4 0.06 290 / .14);">
+                <img src="./assets/dermabell-melting-mask.jpg" alt="Dermabell Melting Mask" width="600" height="600" loading="lazy" decoding="async" style="display: block; width: clamp(80px, 18vw, 104px); height: clamp(80px, 18vw, 104px); object-fit: cover; border-radius: 8px; flex-shrink: 0;"/>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 12px; letter-spacing: 2px; font-weight: 700; color: oklch(0.45 0.16 350); margin-bottom: 8px;">PRODUCT</div>
+                  <div style="font-size: clamp(16px, 2.6vw, 19px); font-weight: 800; color: oklch(0.2 0.03 290); margin-bottom: 4px;">{{ t.pickupProductTitle }}</div>
+                  <div style="font-size: 12px; letter-spacing: 1px; color: oklch(0.55 0.02 260);">BEAUTY &amp; LIFESTYLE</div>
+                </div>
+                <div style="font-size: 22px; color: oklch(0.32 0.06 300); flex-shrink: 0;">→</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="aru-fade" style="position: relative; padding: 0 clamp(16px, 4vw, 48px) clamp(48px, 9vw, 90px); animation-delay: .15s;">
         <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 24px;">
           <sc-for list="{{ homeServices }}" as="s" hint-placeholder-count="5">
@@ -308,7 +363,7 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <sc-for list="{{ newsItems }}" as="n" hint-placeholder-count="3">
-              <div class="aru-news-row" onClick="{{ n.rowClick }}" style="display: flex; gap: 20px; align-items: center; background: oklch(1 0 0 / .8); border: 1px solid oklch(0.92 0.01 260); border-radius: 16px; padding: 20px clamp(18px, 3.5vw, 28px); cursor: pointer; transition: transform .2s, box-shadow .2s;" style-hover="transform: translateY(-2px); box-shadow: 0 10px 24px oklch(0.5 0.06 280 / .16);">
+              <div class="aru-news-row" onClick="{{ n.rowClick }}" style="display: flex; gap: 20px; align-items: center; background: oklch(1 0 0 / .8); border: 1px solid oklch(0.92 0.01 260); border-radius: 16px; padding: 20px clamp(18px, 3.5vw, 28px); cursor: pointer; transition: transform .2s, box-shadow .2s;" style-hover="transform: translateY(-3px); box-shadow: 0 12px 26px oklch(0.5 0.06 280 / .18);" style-active="transform: translateY(-3px) scale(1.01); box-shadow: 0 12px 26px oklch(0.5 0.06 280 / .22);">
                 <div style="font-size: 13px; letter-spacing: 1px; color: oklch(0.55 0.02 260); flex-shrink: 0; width: 90px;">{{ n.date }}</div>
                 <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
                   <sc-if value="{{ n.hasLogo }}" hint-placeholder-val="{{ false }}">
@@ -449,6 +504,29 @@
         <div style="font-size: 12px; letter-spacing: 1px; color: oklch(0.55 0.02 260); margin-bottom: 14px;">2026.09.05</div>
         <h1 style="font-size: clamp(24px, 5.6vw, 34px); font-weight: 800; line-height: 1.4; margin: 0 0 16px;">TikTok Shopで売れる商品はどう見分ける？運用代行で見えてきた傾向</h1>
         <p style="font-size: 15px; color: oklch(0.48 0.02 260); line-height: 1.7; margin: 0 0 32px;">TikTok LIVEコマースの運用代行で得た知見をもとに、成果につながる商品選定のポイントを紹介します。</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; margin-bottom: 28px;">
+          <button onClick="{{ toggleArticleLike }}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: none; cursor: pointer; padding: 4px; color: {{ articleLiked ? 'oklch(0.62 0.22 15)' : 'oklch(0.6 0.02 260)' }};">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="{{ articleLiked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5c-.3 0-.6-.1-.8-.3C7.9 17.5 3 13.6 3 9.2 3 6.3 5.3 4 8.1 4c1.6 0 3 .7 3.9 1.9C12.9 4.7 14.3 4 15.9 4 18.7 4 21 6.3 21 9.2c0 4.4-4.9 8.3-8.2 11-.2.2-.5.3-.8.3z"/></svg>
+            <span style="font-size: 11px;">{{ articleLikeCount }}</span>
+          </button>
+          <div style="width: 1px; height: 22px; background: oklch(0.88 0.01 260);"></div>
+          <a href="{{ shareXHref }}" target="_blank" rel="noopener noreferrer" title="X" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #000;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.6l-5.2-6.8L5 22H2l7.9-9L1.5 2H8.3l4.7 6.2L18.9 2z"/></svg>
+          </a>
+          <a href="{{ shareFbHref }}" target="_blank" rel="noopener noreferrer" title="Facebook" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #1877F2;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <a href="{{ shareLineHref }}" target="_blank" rel="noopener noreferrer" title="LINE" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #06C755;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.1 8.3 7.9-.3 1.3-1.2 3-1.2 3s2.5-.4 4.6-2.4c5.3-.5 8.3-3.9 8.3-7.5C22 6.6 17.5 3 12 3zm-4.4 9.9H5.9V8.6h.9v3.4h.8v.9zm2.1 0h-.9V8.6h.9v4.3zm4.4 0h-.9l-1.6-2.1v2.1H9.6V8.6h.9l1.6 2.1V8.6h.9v4.3zm3.9-3.4h-1.6v.8h1.4v.9h-1.4v.8h1.6v.9h-2.5V8.6h2.5v.9z"/></svg>
+          </a>
+          <div style="width: 1px; height: 22px; background: oklch(0.88 0.01 260);"></div>
+          <button onClick="{{ downloadArticleBanner }}" title="画像を保存" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; border: 1px solid oklch(0.88 0.01 260); background: none; cursor: pointer; color: oklch(0.35 0.02 260);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          </button>
+          <button onClick="{{ copyArticleLink }}" title="{{ linkCopied ? 'コピーしました' : 'リンクをコピー' }}" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; border: 1px solid oklch(0.88 0.01 260); background: none; cursor: pointer; color: {{ linkCopied ? 'oklch(0.55 0.18 250)' : 'oklch(0.35 0.02 260)' }};">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5L11 8"/><path d="M14 10a3.5 3.5 0 0 0-5 0L6.5 12.5a3.5 3.5 0 0 0 5 5L13 16"/></svg>
+          </button>
+        </div>
         <div style="height: 1px; background: oklch(0.9 0.01 260); margin-bottom: 32px;"></div>
         <div style="font-size: 16px; line-height: 2; color: oklch(0.25 0.01 260);">
           <p style="margin: 0 0 28px;">TikTok Shopでは、出店するだけでは商品は売れません。価格帯やターゲット、見せ方によって伸びる商品とそうでない商品が分かれます。ARU LANDでは、複数ブランドのTikTok Shop運用代行を通じて、実際の配信データをもとに商品ごとの傾向を検証してきました。</p>
@@ -501,11 +579,11 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 16px;">
           <sc-for list="{{ newsItems }}" as="n" hint-placeholder-count="3">
-            <div class="aru-news-row" style="display: flex; gap: 20px; align-items: center; background: white; border: 1px solid oklch(0.92 0.01 260); border-radius: 16px; padding: 22px clamp(18px, 3.5vw, 28px);">
+            <div class="aru-news-row" onClick="{{ n.rowClick }}" style="display: flex; gap: 20px; align-items: center; background: white; border: 1px solid oklch(0.92 0.01 260); border-radius: 16px; padding: 22px clamp(18px, 3.5vw, 28px); cursor: pointer; transition: transform .2s, box-shadow .2s;" style-hover="transform: translateY(-3px); box-shadow: 0 12px 26px oklch(0.5 0.06 280 / .18);" style-active="transform: translateY(-3px) scale(1.01); box-shadow: 0 12px 26px oklch(0.5 0.06 280 / .22);">
               <div style="font-size: 13px; letter-spacing: 1px; color: oklch(0.55 0.02 260); flex-shrink: 0; width: 90px;">{{ n.date }}</div>
               <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
                 <sc-if value="{{ n.hasLogo }}" hint-placeholder-val="{{ false }}">
-                  <a onClick="{{ goPartnership }}" title="{{ n.logoAlt }}" style="display: block; cursor: pointer; flex-shrink: 0; width: 60px; height: 60px; border-radius: 12px; overflow: hidden; border: 1px solid oklch(0.9 0.01 260); transition: transform .2s, box-shadow .2s;" style-hover="transform: translateY(-2px); box-shadow: 0 10px 24px oklch(0.5 0.06 280 / .28);">
+                  <a onClick="{{ goPartnershipStop }}" title="{{ n.logoAlt }}" style="display: block; cursor: pointer; flex-shrink: 0; width: 60px; height: 60px; border-radius: 12px; overflow: hidden; border: 1px solid oklch(0.9 0.01 260); transition: transform .2s, box-shadow .2s;" style-hover="transform: translateY(-2px); box-shadow: 0 10px 24px oklch(0.5 0.06 280 / .28);">
                     <img src="{{ n.logo }}" alt="{{ n.logoAlt }}" width="196" height="194" loading="lazy" decoding="async" style="display: block; width: 100%; height: 100%; object-fit: cover;"/>
                   </a>
                 </sc-if>
@@ -707,6 +785,19 @@
 
   </main>
 
+  <section onClick="{{ goContact }}" style="cursor: pointer; padding: clamp(56px, 10vw, 110px) clamp(16px, 4vw, 48px) clamp(40px, 7vw, 64px); background: linear-gradient(120deg, oklch(0.9 0.05 250), oklch(0.88 0.06 300) 55%, oklch(0.9 0.06 340));">
+    <div class="aru-sec-head aru-scroll-reveal" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 28px; padding-bottom: clamp(40px, 7vw, 72px); border-bottom: 1px solid oklch(0.5 0.08 300 / .5);">
+      <div>
+        <div style="font-size: 13px; letter-spacing: 3px; font-weight: 700; color: oklch(0.4 0.12 350); margin-bottom: 18px;">LET'S TALK</div>
+        <div style="display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); flex-wrap: wrap;">
+          <h2 style="font-size: clamp(30px, 6.5vw, 60px); font-weight: 800; line-height: 1.2; margin: 0; letter-spacing: -.5px; color: oklch(0.25 0.06 300);">{{ t.talkTitle }}</h2>
+          <span style="font-size: clamp(32px, 5vw, 48px); line-height: 1; color: oklch(0.45 0.16 350); transition: transform .3s;" style-hover="transform: translate(4px, -4px);">↗</span>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: clamp(14px, 2.4vw, 17px); line-height: 2; color: oklch(0.3 0.03 290); white-space: pre-line; max-width: 520px;">{{ t.talkSub }}</p>
+    </div>
+  </section>
+
   <footer style="padding: clamp(36px, 7vw, 56px) clamp(16px, 4vw, 48px); background: oklch(0.16 0.02 260); color: oklch(0.85 0.01 260);">
     <div class="aru-footer-row" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
       <div>
@@ -783,7 +874,7 @@ const NEWS_ITEMS = {
 const ABOUT_ROWS = {
   ja: [
     { label: '会社名', value: 'ARU LAND（アルランド）' },
-    { label: '代表', value: '元木 天琉（Aru Motoki）' },
+    { label: '代表', value: '元木 天琉' },
     { label: '所在地', value: '〒556-0022 大阪府大阪市浪速区桜川2丁目12-26 ルーエ桜川803' },
     { label: '事業内容', value: 'TikTok運用・LIVEコマース運営、動画作成、商品企画・開発、アカウント作成代行、ライバーマネジメント' },
     { label: 'TEL', value: '070-2421-5991' },
@@ -887,12 +978,12 @@ const BG_BLOB_BANDS = [
   { top: '3600px' },
 ];
 const INTRO_SPARKLES = [
-  { left: 8, top: 20, size: 8, delay: 4.6, color: 'oklch(0.82 0.16 330 / .9)' },
-  { left: 88, top: 30, size: 7, delay: 4.8, color: 'oklch(0.75 0.15 250 / .9)' },
-  { left: 18, top: 75, size: 6, delay: 5.1, color: 'oklch(0.97 0.005 260 / .95)' },
-  { left: 78, top: 78, size: 8, delay: 5.3, color: 'oklch(0.82 0.16 330 / .9)' },
-  { left: 50, top: 8, size: 6, delay: 5.5, color: 'oklch(0.75 0.15 250 / .9)' },
-  { left: 60, top: 88, size: 7, delay: 5.7, color: 'oklch(0.97 0.005 260 / .95)' },
+  { left: 8, top: 20, size: 8, delay: 3.4, color: 'oklch(0.82 0.16 330 / .9)' },
+  { left: 88, top: 30, size: 7, delay: 3.5, color: 'oklch(0.75 0.15 250 / .9)' },
+  { left: 18, top: 75, size: 6, delay: 3.7, color: 'oklch(0.97 0.005 260 / .95)' },
+  { left: 78, top: 78, size: 8, delay: 3.9, color: 'oklch(0.82 0.16 330 / .9)' },
+  { left: 50, top: 8, size: 6, delay: 4.0, color: 'oklch(0.75 0.15 250 / .9)' },
+  { left: 60, top: 88, size: 7, delay: 4.1, color: 'oklch(0.97 0.005 260 / .95)' },
 ];
 const COMET_COLORS = ['oklch(0.82 0.16 330 / .85)', 'oklch(0.75 0.15 250 / .85)', 'oklch(0.97 0.005 260 / .9)'];
 const COMETS = Array.from({ length: 12 }, (_, i) => ({
@@ -1001,6 +1092,8 @@ const TEXT = {
     newsTitle: 'お知らせ', newsSub: '最新情報やイベントレポートなどを今後こちらで発信していきます。',
     servicesTitle: '事業内容', aboutTitle: '会社概要',
     sloganJa: '未来を発明する',
+    talkTitle: '次の企画を、一緒に。', talkSub: 'コンテンツ制作、ライブコマース、商品企画。\n事業や協業について、お聞かせください。',
+    pickupSub: 'いま、ARU LANDから', pickupReadMore: '記事を読む →', pickupSeeMore: '提携について見る →', pickupArticleTitle: 'TikTok Shopで売れる商品は\nどう見分ける？', pickupArticleSub: '運用代行で見えてきた、商品選びと伝え方のヒント', pickupPartnerTitle: '香港のクリエイティブスタジオ DITTO DITTOと業務提携。', pickupProductTitle: '取り扱い商品を見る',
     comingSoonBig: '近日公開',
     comingSoonNote: 'LIVE配信・撮影・イベントのメディアコンテンツを準備中です。',
     articlesLabel: 'COLUMN',
@@ -1028,6 +1121,8 @@ const TEXT = {
     newsTitle: 'News', newsSub: 'Latest updates and event reports will be posted here.',
     servicesTitle: 'Services', aboutTitle: 'About Us',
     sloganJa: 'Invent the Future.',
+    talkTitle: "Let's build the next one together.", talkSub: 'Content production, live commerce, product planning.\nTell us about your business or a collaboration idea.',
+    pickupSub: 'Now from ARU LAND', pickupReadMore: 'Read the article →', pickupSeeMore: 'About the partnership →', pickupArticleTitle: 'How to spot products\nthat sell on TikTok Shop', pickupArticleSub: 'Lessons from running shops: choosing and pitching products', pickupPartnerTitle: 'Partnering with Hong Kong creative studio DITTO DITTO.', pickupProductTitle: 'View our products',
     comingSoonBig: 'COMING SOON',
     comingSoonNote: 'Media content from our live streams, shoots, and events is on the way.',
     formHeading: 'CONTACT FORM',
@@ -1051,7 +1146,27 @@ const TEXT = {
 };
 
 class Component extends DCLogic {
-  state = { page: 'home', introDone: false, introGone: false, lang: 'ja', isMobile: typeof window !== 'undefined' && window.innerWidth < 900, menuOpen: false, logoBurstStars: [], logoBurstOn: false, tappedIcon: null };
+  state = { page: 'home', introDone: false, introGone: false, lang: 'ja', isMobile: typeof window !== 'undefined' && window.innerWidth < 900, menuOpen: false, logoBurstStars: [], logoBurstOn: false, tappedIcon: null, articleLiked: false, articleLikeCount: 1, linkCopied: false };
+
+  toggleArticleLike() {
+    this.setState((s) => ({ articleLiked: !s.articleLiked, articleLikeCount: s.articleLikeCount + (s.articleLiked ? -1 : 1) }));
+  }
+
+  copyArticleLink() {
+    const url = (typeof window !== 'undefined' ? window.location.href : 'https://aruland.jp/media/article1');
+    if (typeof navigator !== 'undefined' && navigator.clipboard) navigator.clipboard.writeText(url).catch(() => {});
+    this.setState({ linkCopied: true });
+    clearTimeout(this._linkCopiedTimer);
+    this._linkCopiedTimer = setTimeout(() => this.setState({ linkCopied: false }), 1800);
+  }
+
+  downloadArticleBanner() {
+    if (typeof document === 'undefined') return;
+    const a = document.createElement('a');
+    a.href = './assets/article1-banner.png';
+    a.download = 'aruland-article1-banner.png';
+    a.click();
+  }
 
   triggerIconTap(i, e) {
     if (e && e.stopPropagation) e.stopPropagation();
@@ -1088,8 +1203,8 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ introDone: true }), 6600);
-    setTimeout(() => this.setState({ introGone: true }), 7700);
+    setTimeout(() => this.setState({ introDone: true }), 5200);
+    setTimeout(() => this.setState({ introGone: true }), 6000);
     this._onResize = () => {
       const m = window.innerWidth < 900;
       if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
@@ -1192,6 +1307,16 @@ class Component extends DCLogic {
       goServices: () => this.setPage('services'),
       goShopping: () => this.setPage('shopping'),
       goMedia: () => this.setPage('media'),
+      openArticle1: () => this.setPage('article1'),
+      articleLiked: this.state.articleLiked,
+      articleLikeCount: this.state.articleLikeCount,
+      toggleArticleLike: () => this.toggleArticleLike(),
+      linkCopied: this.state.linkCopied,
+      copyArticleLink: () => this.copyArticleLink(),
+      downloadArticleBanner: () => this.downloadArticleBanner(),
+      shareXHref: 'https://twitter.com/intent/tweet?url=' + encodeURIComponent('https://aruland.jp/media/article1') + '&text=' + encodeURIComponent('TikTok Shopで売れる商品はどう見分ける？'),
+      shareFbHref: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://aruland.jp/media/article1'),
+      shareLineHref: 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://aruland.jp/media/article1'),
       goNews: () => this.setPage('news'),
       partnership: PARTNERSHIP[lang],
       goContact: () => this.setPage('contact'),
