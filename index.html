@@ -39,7 +39,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin: 0; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -202,7 +202,7 @@
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="4">
         <button onClick="{{ item.select }}" style="border: none; background: none; cursor: pointer; padding: 12px 14px; min-height: 44px; border-radius: 999px; font-size: 14px; letter-spacing: 1px; white-space: nowrap; width: {{ navItemWidth }}; text-align: {{ navItemAlign }}; color: {{ item.color }}; font-weight: {{ item.weight }}; background: {{ item.bg }}; transition: all .15s;">{{ item.label }}</button>
       </sc-for>
-      <a href="./arubuzz/index.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 10px 14px; min-height: 44px; border-radius: 999px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 1px; font-weight: 600; color: #fff; background: #0b0b10; box-shadow: -2px -2px 0 #25F4EE, 2px 2px 0 #FE2C55; text-decoration: none; white-space: nowrap; width: {{ navItemWidth }};">ARU BUZZ</a>
+      <a href="./arubuzz/index.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 10px 14px; min-height: 44px; border-radius: 999px; font-family: 'Archivo Black', 'Jost', sans-serif; font-size: 13px; letter-spacing: .5px; font-weight: 400; color: #FE2C55; text-shadow: -1.5px -1px 0 #25F4EE, 1px 1px 0 #0b0b10; background: #fff; border: 1px solid oklch(0.9 0.01 300); text-decoration: none; white-space: nowrap; width: {{ navItemWidth }};">ARU BOOM!</a>
       <button onClick="{{ goShopping }}" style="border: none; cursor: pointer; padding: 12px 20px; min-height: 44px; border-radius: 999px; font-size: 13px; letter-spacing: 1px; font-weight: 700; color: white; width: {{ navItemWidth }}; background: linear-gradient(135deg, oklch(0.62 0.19 250), oklch(0.66 0.19 355));">{{ t.shopBtn }}</button>
       <button onClick="{{ toggleLang }}" style="border: 1px solid oklch(0.85 0.01 260); background: white; cursor: pointer; padding: 10px 16px; min-height: 44px; border-radius: 999px; font-size: 12px; letter-spacing: 1px; font-weight: 700; width: {{ navItemWidth }}; color: oklch(0.35 0.02 260);">{{ langLabel }}</button>
     </nav>
@@ -379,7 +379,7 @@
             <div style="display: flex; flex-direction: column; gap: 24px;">
               <a href="./arubuzz/index.html" class="aru-scroll-reveal aru-reveal-card" style="display: grid; gap: 10px; padding: 24px; border-radius: 12px; background: #0b0b10; color: #fff; text-decoration: none; transition: transform .25s, box-shadow .25s;" style-hover="transform: translateY(-4px); box-shadow: 0 14px 30px oklch(0.2 0.06 290 / .3);">
                 <div style="display: flex; gap: 16px; align-items: baseline; font-size: 12px; letter-spacing: 2px;"><span style="color: #25F4EE; font-weight: 700;">NEW SERVICE</span><span style="color: oklch(0.7 0.01 290);">2026.09</span></div>
-                <div style="font-family: 'Jost', sans-serif; font-size: clamp(26px, 4vw, 34px); font-weight: 600; letter-spacing: -.5px; text-shadow: -2px -1px 0 #25F4EE, 2px 1px 0 #FE2C55;">ARU BUZZ</div>
+                <div style="font-family: 'Archivo Black', 'Jost', sans-serif; font-size: clamp(26px, 4vw, 34px); font-weight: 400; letter-spacing: .5px; color: #FE2C55; text-shadow: -3px -2px 0 #25F4EE, 1.5px 1.5px 0 #0b0b10;">ARU BOOM!</div>
                 <div style="font-size: clamp(15px, 2vw, 17px); font-weight: 800; line-height: 1.5;">{{ t.buzzTitle }}</div>
                 <div style="margin-top: 6px; padding-top: 14px; border-top: 1px solid oklch(0.3 0.02 290); font-size: 13px; font-weight: 700; color: oklch(0.85 0.08 340);">{{ t.buzzCta }}</div>
               </a>
@@ -890,8 +890,10 @@
               <textarea name="message" rows="5" required="required" placeholder="{{ t.phMessage }}" style="border: 1px solid oklch(0.88 0.04 290); border-radius: 12px; padding: 14px 16px; font-size: 16px; font-family: inherit; outline: none; background: oklch(0.98 0.008 280); resize: vertical; width: 100%; box-sizing: border-box; -webkit-appearance: none;" style-focus="border-color: oklch(0.68 0.14 320);"></textarea>
             </label>
 
-            <button type="submit" style="border: none; cursor: pointer; padding: 17px 36px; min-height: 50px; -webkit-appearance: none; border-radius: 999px; font-size: 15px; letter-spacing: 1px; color: oklch(0.28 0.05 280); font-weight: 700; background: linear-gradient(135deg, oklch(0.86 0.07 250), oklch(0.87 0.08 340)); margin-top: 6px;">{{ t.formSubmit }}</button>
-
+            <button type="submit" style="border: none; cursor: pointer; padding: 17px 36px; min-height: 50px; -webkit-appearance: none; border-radius: 999px; font-size: 15px; letter-spacing: 1px; color: oklch(0.28 0.05 280); font-weight: 700; background: linear-gradient(135deg, oklch(0.86 0.07 250), oklch(0.87 0.08 340)); margin-top: 6px;">{{ contactBtn }}</button>
+            <sc-if value="{{ contactSent }}" hint-placeholder-val="{{ false }}">
+              <div role="status" style="padding: 16px; border-radius: 16px; background: oklch(0.96 0.03 160); color: oklch(0.35 0.08 160); font-size: 14px; font-weight: 700; text-align: center; line-height: 1.7;">{{ t.formThanks }}</div>
+            </sc-if>
             <div style="font-size: 12px; line-height: 1.7; color: oklch(0.55 0.02 260); text-align: center;">{{ t.formNote }}</div>
           </form>
         </div>
@@ -907,7 +909,7 @@
               <div style="font-size: 12px; letter-spacing: 3px; font-weight: 700; color: oklch(0.45 0.16 350); margin-bottom: 14px;">RECRUIT</div>
               <h2 style="font-family: 'Jost', 'Noto Sans JP', sans-serif; font-size: clamp(40px, 7vw, 88px); font-weight: 500; line-height: 1; margin: 0 0 22px; letter-spacing: -2px; color: oklch(0.22 0.04 290);">{{ t.recruitTitle }}</h2>
               <p style="font-size: clamp(15px, 1.6vw, 18px); line-height: 1.9; color: oklch(0.35 0.03 260); margin: 0 0 28px; white-space: pre-line; text-wrap: pretty;">{{ t.recruitSub }}</p>
-              <a href="{{ recruitLink }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: oklch(0.22 0.04 290); color: #fff; font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: .5px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-2px); box-shadow: 0 14px 30px -12px oklch(0.22 0.04 290 / .5);">{{ t.recruitCta }}<span aria-hidden="true">→</span></a>
+              <button type="button" onClick="{{ openLiver }}" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; min-height: 48px; border: none; cursor: pointer; border-radius: 999px; background: oklch(0.22 0.04 290); color: #fff; font-family: inherit; font-weight: 700; font-size: 15px; letter-spacing: .5px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-2px); box-shadow: 0 14px 30px -12px oklch(0.22 0.04 290 / .5);">{{ t.recruitCta }}<span aria-hidden="true">→</span></button>
             </div>
             <div style="display: grid; gap: 14px;">
               <sc-for list="{{ t.recruitPoints }}" as="pt" hint-placeholder-count="3">
@@ -946,6 +948,53 @@
       <div style="font-size: 12px; color: oklch(0.5 0.01 260);">© 2026 ARU LAND（アルランド / あるランド / あるらんど）</div>
     </div>
   </footer>
+
+  <sc-if value="{{ liverOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="ライバー応募フォーム" onClick="{{ closeLiverBg }}" style="position: fixed; inset: 0; z-index: 200; background: oklch(0.2 0.03 290 / .45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; padding: 16px; overflow-y: auto;">
+      <div data-liver-card="1" style="box-sizing: border-box; position: relative; width: min(100%, 640px); max-height: calc(100vh - 32px); overflow-y: auto; border-radius: 28px; background: linear-gradient(160deg, #fff, oklch(0.98 0.015 320)); box-shadow: 0 40px 80px -30px oklch(0.3 0.1 300 / .5); padding: clamp(24px, 5vw, 40px); font-family: 'Noto Sans JP', sans-serif;">
+        <button type="button" onClick="{{ closeLiver }}" aria-label="閉じる" style="position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; border: none; background: oklch(0.95 0.01 300); cursor: pointer; font-size: 20px; color: oklch(0.3 0.03 290);">×</button>
+        <sc-if value="{{ liverSent }}" hint-placeholder-val="{{ false }}">
+          <div style="display: grid; justify-items: center; gap: 14px; text-align: center; padding: 30px 0;">
+            <div style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 4px; color: oklch(0.55 0.16 340);">THANK YOU</div>
+            <div style="font-size: clamp(20px, 4vw, 26px); font-weight: 800; color: oklch(0.22 0.03 290);">ご応募ありがとうございます</div>
+            <p style="margin: 0; font-size: 14px; line-height: 1.9; color: oklch(0.4 0.03 290);">内容を確認し、3営業日以内にご連絡します。</p>
+            <button type="button" onClick="{{ closeLiver }}" style="margin-top: 8px; padding: 14px 28px; min-height: 48px; border: none; border-radius: 999px; background: oklch(0.22 0.04 290); color: #fff; font-family: inherit; font-weight: 700; cursor: pointer;">閉じる</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ liverNotSent }}" hint-placeholder-val="{{ true }}">
+          <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 4px; color: oklch(0.55 0.16 340); margin-bottom: 8px;">LIVER ENTRY</div>
+          <h3 style="margin: 0 0 6px; font-size: clamp(22px, 4.4vw, 28px); font-weight: 800; color: oklch(0.22 0.03 290);">ライバー応募フォーム</h3>
+          <p style="margin: 0 0 24px; font-size: 13px; line-height: 1.8; color: oklch(0.45 0.03 290);">経験は問いません。わかる範囲でご記入ください。</p>
+          <form onSubmit="{{ submitLiver }}" style="display: grid; gap: 14px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px;">
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">お名前（必須）<input name="name" required placeholder="山田 花子" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">フリガナ（必須）<input name="kana" required placeholder="ヤマダ ハナコ" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">年齢（必須）<input name="age" required type="number" min="18" max="99" placeholder="24" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">性別<select name="gender" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"><option>女性</option><option>男性</option><option>回答しない</option></select></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">メールアドレス（必須）<input name="email" required type="email" placeholder="you@example.com" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">電話番号（必須）<input name="tel" required type="tel" placeholder="090-0000-0000" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">お住まいの都道府県（必須）<input name="pref" required placeholder="大阪府" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">TikTokアカウント<input name="tiktok" placeholder="@aruland" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">フォロワー数<select name="followers" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"><option>1,000人未満</option><option>1,000〜1万人</option><option>1万〜5万人</option><option>5万人以上</option></select></label>
+              <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">LIVE配信の経験<select name="exp" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290);"><option>未経験</option><option>1年未満</option><option>1〜3年</option><option>3年以上</option></select></label>
+            </div>
+            <div style="display: grid; gap: 8px;">
+              <span style="font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">配信できる時間帯</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <label style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid oklch(0.92 0.01 300); font-size: 14px;"><input type="checkbox" name="time" value="平日昼">平日 昼</label>
+                <label style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid oklch(0.92 0.01 300); font-size: 14px;"><input type="checkbox" name="time" value="平日夜">平日 夜</label>
+                <label style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid oklch(0.92 0.01 300); font-size: 14px;"><input type="checkbox" name="time" value="土日">土日</label>
+                <label style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid oklch(0.92 0.01 300); font-size: 14px;"><input type="checkbox" name="time" value="スタジオ可">大阪のスタジオに来られる</label>
+              </div>
+            </div>
+            <label style="display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: oklch(0.3 0.03 290);">自己PR・得意なジャンル<textarea name="pr" rows="4" placeholder="コスメの紹介が得意です。関西弁トークで盛り上げます。" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16px; padding: 13px 16px; border-radius: 16px; border: 1px solid oklch(0.9 0.01 300); background: #fff; color: oklch(0.22 0.03 290); resize: vertical;"></textarea></label>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 1.7; color: oklch(0.35 0.03 290);"><input required type="checkbox" style="margin-top: 4px;">18歳以上です。個人情報の取り扱いに同意します</label>
+            <button type="submit" disabled="{{ liverSending }}" style="margin-top: 6px; padding: 16px; min-height: 52px; border: none; border-radius: 999px; background: linear-gradient(90deg, oklch(0.68 0.2 340), oklch(0.58 0.2 290)); color: #fff; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer;">{{ liverBtn }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
 
 </div>
 </x-dc>
@@ -1234,7 +1283,7 @@ const TEXT = {
     worksTitle: '実績紹介', worksSub: 'これまでの実績・事例を今後こちらに掲載していきます。',
     newsTitle: 'お知らせ', newsSub: '最新情報やイベントレポートなどを今後こちらで発信していきます。',
     servicesTitle: '事業内容', aboutTitle: '会社概要',
-    buzzEyebrow: 'TIKTOK SERVICE', buzzTitle: 'TikTok運用は、ARU BUZZにまるごと。', buzzSub: 'アカウント設計・動画制作・LIVE配信・TikTok Shop・広告運用まで。', buzzCta: 'ARU BUZZを見る →',
+    buzzEyebrow: 'TIKTOK SERVICE', buzzTitle: 'TikTok運用は、ARU BOOM!にまるごと。', buzzSub: 'アカウント設計・動画制作・LIVE配信・TikTok Shop・広告運用まで。', buzzCta: 'ARU BOOM!を見る →',
     sloganJa: '未来を発明する',
     recruitTitle: 'LIVER WANTED',
     recruitSub: 'TikTok LIVEで、商品の魅力を自分の言葉で届けるライバーを募集しています。\n経験は問いません。ARU LANDが企画・商品・配信環境を用意し、伸ばし方まで一緒に考えます。',
@@ -1257,7 +1306,7 @@ const TEXT = {
     fSubject: 'お問い合わせ内容',
     fMessage: 'ご相談内容（必須）', phMessage: 'ご相談内容をご記入ください。',
     formSubmit: '送信する',
-    formNote: '送信いただくとメールソフトが起動します。内容をご確認のうえ送信してください。',
+    formNote: '2営業日以内に担当者よりご連絡します。', formThanks: 'お問い合わせありがとうございます。送信が完了しました。', formSending: '送信中…',
     contactTitle: 'お問い合わせ', contactSub: 'TikTok運用・LIVEコマース・商品企画など、お気軽にご相談ください。',
     comingSoon: 'Coming Soon',
     shopBtn: 'Shopping', shopTitle: 'ショッピング', shopSub: 'LIVEコマースで生まれた商品を、全国どこからでもお届け。',
@@ -1272,7 +1321,7 @@ const TEXT = {
     worksTitle: 'Works', worksSub: 'Case studies and past work will be featured here soon.',
     newsTitle: 'News', newsSub: 'Latest updates and event reports will be posted here.',
     servicesTitle: 'Services', aboutTitle: 'About Us',
-    buzzEyebrow: 'TIKTOK SERVICE', buzzTitle: 'Leave your TikTok to ARU BUZZ.', buzzSub: 'Account setup, short videos, LIVE, TikTok Shop and ads — all in one team.', buzzCta: 'See ARU BUZZ →',
+    buzzEyebrow: 'TIKTOK SERVICE', buzzTitle: 'Leave your TikTok to ARU BOOM!', buzzSub: 'Account setup, short videos, LIVE, TikTok Shop and ads — all in one team.', buzzCta: 'See ARU BOOM! →',
     sloganJa: 'Invent the Future.',
     recruitTitle: 'LIVER WANTED',
     recruitSub: 'We are looking for TikTok LIVE hosts who can share products in their own words.\nNo experience needed — ARU LAND provides the products, the plan, and the studio, and grows with you.',
@@ -1294,7 +1343,7 @@ const TEXT = {
     fSubject: 'Subject',
     fMessage: 'Message (required)', phMessage: 'Tell us what you need.',
     formSubmit: 'Send',
-    formNote: 'Submitting opens your mail app with the message pre-filled.',
+    formNote: 'We will reply within 2 business days.', formThanks: 'Thank you! Your message has been sent.', formSending: 'Sending…',
     contactTitle: 'Contact', contactSub: 'Feel free to reach out about TikTok ops, live commerce, product planning, and more.',
     comingSoon: 'Coming Soon',
     shopBtn: 'Shopping', shopTitle: 'Shopping', shopSub: 'Products born from our live commerce shows, delivered anywhere in Japan.',
@@ -1307,6 +1356,18 @@ const TEXT = {
 };
 
 class Component extends DCLogic {
+  async submitLiver(e) {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = {}; for (const [k, v] of fd.entries()) data[k] = data[k] ? data[k] + '・' + v : v;
+    data._subject = '【ライバー応募】' + (data.name || '');
+    const url = this.props.liverFormEndpoint || 'https://formspree.io/f/mdekwyzz';
+    this.setState({ liverSending: true });
+    let ok = false;
+    try { const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) }); ok = r.ok; } catch (err) {}
+    if (!ok) { this.setState({ liverSending: false }); alert('送信できませんでした。時間をおいてもう一度お試しいただくか、aruland100@gmail.com までご連絡ください。'); return; }
+    this.setState({ liverSending: false, liverSent: true });
+  }
   state = { page: 'home', introDone: false, introGone: false, lang: 'ja', isMobile: typeof window !== 'undefined' && window.innerWidth < 1080, menuOpen: false, logoBurstStars: [], logoBurstOn: false, tappedIcon: null, articleLiked: false, articleLikeCount: 1, linkCopied: false };
 
   toggleArticleLike() {
@@ -1399,7 +1460,11 @@ class Component extends DCLogic {
       ? ['お名前: ' + g('name'), '会社名: ' + g('company'), 'メール: ' + g('email'), '電話: ' + g('tel'), '内容区分: ' + g('subject'), '', g('message')]
       : ['Name: ' + g('name'), 'Company: ' + g('company'), 'Email: ' + g('email'), 'Phone: ' + g('tel'), 'Subject: ' + g('subject'), '', g('message')];
     const subject = (ja ? '【お問い合わせ】' : '[Inquiry] ') + (g('subject') || (ja ? 'ご相談' : 'General'));
-    window.location.href = 'mailto:aruland100@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    const data = { _subject: subject, name: g('name'), company: g('company'), email: g('email'), tel: g('tel'), subject: g('subject'), message: g('message') };
+    this.setState({ contactSending: true });
+    fetch('https://formspree.io/f/mdekwyzz', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+      .then((r) => { if (!r.ok) throw new Error(); f.reset(); this.setState({ contactSending: false, contactSent: true }); })
+      .catch(() => { this.setState({ contactSending: false }); alert(ja ? '送信できませんでした。時間をおいてもう一度お試しいただくか、aruland100@gmail.com までご連絡ください。' : 'Could not send. Please try again or email aruland100@gmail.com.'); });
   }
 
   componentWillUnmount() { if (this._onResize) window.removeEventListener('resize', this._onResize); }
@@ -1436,6 +1501,17 @@ class Component extends DCLogic {
     return {
       heroVideoEl,
       recruitLink,
+      contactSent: !!this.state.contactSent,
+      contactBtn: this.state.contactSending ? TEXT[lang].formSending : TEXT[lang].formSubmit,
+      liverOpen: !!this.state.liverOpen,
+      liverSent: !!this.state.liverSent,
+      liverNotSent: !this.state.liverSent,
+      liverSending: !!this.state.liverSending,
+      liverBtn: this.state.liverSending ? '送信中…' : '応募する',
+      openLiver: () => this.setState({ liverOpen: true, liverSent: false }),
+      closeLiver: () => this.setState({ liverOpen: false }),
+      closeLiverBg: (e) => { if (e.target === e.currentTarget) this.setState({ liverOpen: false }); },
+      submitLiver: (e) => this.submitLiver(e),
       introOpacity: this.state.introDone ? 0 : 1,
       introPointer: this.state.introDone ? 'none' : 'auto',
       introVisibility: this.state.introGone ? 'hidden' : 'visible',
