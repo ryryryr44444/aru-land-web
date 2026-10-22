@@ -50,6 +50,10 @@
     </div>
   </div>
 
+  <div style="position: relative; z-index: 21; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px clamp(16px, 4vw, 48px); background: oklch(0.22 0.04 290); color: #fff; font-size: 12px;">
+    <a href="../?from=boom" style="display: inline-flex; align-items: center; gap: 8px; min-height: 32px; color: #fff; text-decoration: none; font-weight: 700;" style-hover="opacity: .8;"><span aria-hidden="true">←</span>ARU LAND 公式サイトへ戻る</a>
+    <span style="font-family: 'Jost', sans-serif; letter-spacing: 2px; opacity: .7;">A SERVICE BY ARU LAND</span>
+  </div>
   <header style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(16px, 4vw, 48px); background: oklch(1 0 0 / .7); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid oklch(1 0 0 / .9);">
     <a href="#top" style="display: flex; align-items: baseline; gap: 10px; color: oklch(0.2 0.03 290);">
       <span style="font-family: 'Archivo Black', 'Jost', sans-serif; font-weight: 400; font-size: 24px; letter-spacing: .5px;color: #FE2C55; text-shadow: -3px -2px 0 #25F4EE, 1.5px 1.5px 0 #0b0b10;">{{ brand }}</span>
@@ -66,8 +70,8 @@
 
   <main id="top" style="position: relative; z-index: 1;">
 
-    <section aria-label="ARU BOOM! イントロ" style="position: relative; margin-top: -1px;">
-      <div style="position: relative; width: 100%; height: clamp(460px, 86vh, 820px); overflow: hidden;">{{ boomIntro }}<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 3; pointer-events: none; background: linear-gradient(180deg, transparent, oklch(0.975 0.015 320));"></div></div>
+    <section aria-label="ARU BOOM! イントロ" style="position: relative; margin-top: -1px; margin-bottom: clamp(24px, 4vw, 48px);">
+      <div style="position: relative; width: 100%; height: clamp(460px, 86vh, 820px); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);">{{ boomIntro }}</div>
     </section>
 
     <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 9vw, 110px) clamp(16px, 4vw, 48px) clamp(40px, 7vw, 80px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(32px, 5vw, 64px); align-items: center;">
@@ -365,7 +369,7 @@
 
   <footer style="position: relative; z-index: 1; padding: 36px clamp(16px, 4vw, 48px); background: oklch(0.2 0.03 290); color: oklch(0.85 0.02 290); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px;">
     <div><span style="font-family: 'Archivo Black', 'Jost', sans-serif; font-size: 18px; font-weight: 400; letter-spacing: .5px; color: #FE2C55; text-shadow: -1.5px -1px 0 #25F4EE, 1px 1px 0 #0b0b10;">{{ brand }}</span><span style="margin-left: 10px;">by ARU LAND（アルランド）</span></div>
-    <a href="https://aruland.jp/" style="color: oklch(0.85 0.06 330);">ARU LAND 公式サイト →</a>
+    <a href="../?from=boom" style="color: oklch(0.85 0.06 330);">ARU LAND 公式サイト →</a>
   </footer>
 
   <sc-if value="{{ stickyCta }}" hint-placeholder-val="{{ false }}">

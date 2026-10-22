@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"ARU LAND","alternateName":["アルランド","あるランド","あるらんど","ARULAND","アル ランド","ある らんど"],"url":"https://aruland.jp/","logo":"https://aruland.jp/assets/og-image.jpg","description":"TikTok運用・LIVEコマース運営、動画制作、商品企画・開発、ライバーマネジメント","founder":{"@type":"Person","name":"元木 天琉"},"address":{"@type":"PostalAddress","postalCode":"556-0022","addressRegion":"大阪府","addressLocality":"大阪市浪速区","streetAddress":"桜川2丁目12-26 ルーエ桜川803","addressCountry":"JP"}}
+  {"@context":"https://schema.org","@type":"Organization","name":"ARU LAND","alternateName":["アルランド","あるランド","あるらんど","ARULAND","アル ランド","ある らんど"],"url":"https://aruland.jp/","logo":"https://aruland.jp/assets/og-image.jpg","description":"TikTok運用・LIVEコマース運営、動画制作、商品企画・開発、ライバーマネジメント","address":{"@type":"PostalAddress","postalCode":"556-0022","addressRegion":"大阪府","addressLocality":"大阪市浪速区","streetAddress":"桜川2丁目12-26 ルーエ桜川803","addressCountry":"JP"}}
   </script>
 <script src="./support.js"></script>
 <template id="__bundler_thumbnail">
@@ -1212,7 +1212,6 @@ const NEWS_ITEMS = {
 const ABOUT_ROWS = {
   ja: [
     { label: '会社名', value: 'ARU LAND（アルランド）' },
-    { label: '代表', value: '元木 天琉' },
     { label: '所在地', value: '〒556-0022 大阪府大阪市浪速区桜川2丁目12-26 ルーエ桜川803' },
     { label: '事業内容', value: 'TikTok運用・LIVEコマース運営、動画作成、商品企画・開発、アカウント作成代行、ライバーマネジメント' },
     { label: 'TEL', value: '070-2421-5991' },
@@ -1220,7 +1219,6 @@ const ABOUT_ROWS = {
   ],
   en: [
     { label: 'Company', value: 'ARU LAND' },
-    { label: 'CEO', value: 'Aru Motoki' },
     { label: 'Address', value: '803 Rue Sakuragawa, 2-12-26 Sakuragawa, Naniwa-ku, Osaka 556-0022, Japan' },
     { label: 'Business', value: 'TikTok ops & live commerce, video production, product planning & development, account setup, liver management' },
     { label: 'TEL', value: '070-2421-5991' },
@@ -1576,8 +1574,13 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ introDone: true }), 5200);
-    setTimeout(() => this.setState({ introGone: true }), 6000);
+    let skip = false;
+    try { skip = /[?&]from=boom/.test(location.search) || /\/arubuzz\//.test(document.referrer) || sessionStorage.getItem('aruIntroSeen') === '1'; } catch (e) {}
+    if (skip) { this.setState({ introDone: true, introGone: true, page: 'home' }); window.scrollTo(0, 0); }
+    else {
+      setTimeout(() => this.setState({ introDone: true }), 5200);
+      setTimeout(() => { this.setState({ introGone: true }); try { sessionStorage.setItem('aruIntroSeen', '1'); } catch (e) {} }, 6000);
+    }
     this._onResize = () => {
       const m = window.innerWidth < 1080;
       if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
